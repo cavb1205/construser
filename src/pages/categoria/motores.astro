@@ -1,0 +1,39 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { repuestos, motores } from "../../data/productos.js";
+import { fade } from 'astro:transitions';
+
+console.log(motores);
+---
+
+<Layout title={`Motores`}>
+    <div class="m-4">
+
+        <h2 class="text-3xl m-4 text-center font-extrabold text-gray-600 capitalize">
+          Lista de Motores
+        </h2>
+        
+      
+        <div class="p-4 grid items-center gap-8 grid-cols-1 sm:grid-cols-2 mb-4">
+          {
+            motores.map((producto) => (
+              <a
+                href={`/categoria/productos/${producto.slug}/`}
+                class=" mx-auto flex flex-col items-center justify-center shadow-lg rounded-lg w-full sm:w-8/12 p-4"
+              >
+                <img
+                  transition:name="imagen-motor"
+                  src={producto.imagenPrincipal}
+                  alt={producto.nombre}
+                  class="w-full h-auto rounded-md"
+                />
+                <h3 class="text-xl font-bold text-gray-500 text-center">
+                  {producto.nombre}
+                </h3>
+                <p class="text-center font-bold text-sky-600">${producto.precio}</p>
+              </a>
+            ))
+          }
+        </div>
+    </div>
+</Layout>

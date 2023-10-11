@@ -1,0 +1,70 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import CardServiceItem from "../components/CardServiceItem.astro";
+import CardQuestionsItem from "../components/CardQuestionsItem.astro";
+
+import { servicios, preguntas } from "../data/data.js";
+import {categorias} from "../data/productos.js";
+import CardCategoryProductItem from "../components/CardCategoryProductItem.astro";
+---
+
+<Layout title="ConstruSer Chile">
+  <main class="p-10">
+    <div class="mx-auto max-w-5xl md:pb-16 pb-10 text-center">
+      <h1 class="text-5xl text-center font-bold">
+        Instalación, mantención y reparación de portones automáticos.
+      </h1>
+      <p class="text-xl text-center mt-4">
+        Empresa líder en Chile en la instalación de motores eléctricos para
+        portones. Con más de 10 años de experiencia, brindamos soluciones
+        efectivas y de calidad a nuestros clientes.
+      </p>
+    </div>
+
+    <section class="p-4">
+      <h2 class="text-3xl mb-4 text-center font-bold text-gray-700">
+        Productos
+      </h2>
+
+      <div class="mx-auto flex flex-row justify-evenly flex-wrap gap-y-2">
+        {
+          categorias.map((categoria) => (
+            <CardCategoryProductItem
+              categoria={categoria}
+            />
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="p-4">
+      <h2 class="text-3xl mb-4 text-center font-bold text-gray-700">
+        Nuestros Servicios
+      </h2>
+
+      <div class="mx-auto gap-8 grid md:gap-y-8 sm:grid-cols-2">
+        {
+          servicios.map((servicio) => (
+            <CardServiceItem
+              title={servicio.nombre}
+              description={servicio.descripcion}
+            />
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- PREGUNTAS FRECUENTES -->
+    <section class="my-4">
+      <h2 class="text-3xl text-center font-bold my-4 text-gray-700">
+        Preguntas Frecuentes
+      </h2>
+      <div class="mx-auto grid gap-8 sm:grid-cols-2">
+        {preguntas.map((pregunta) => <CardQuestionsItem pregunta={pregunta} />)}
+      </div>
+    </section>
+  </main>
+</Layout>
